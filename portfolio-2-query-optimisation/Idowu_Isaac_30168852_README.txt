@@ -40,3 +40,20 @@ warm-up followed by five measured executions for each condition.
 Measurements.json records server execution times in milliseconds,
 excluding client process startup. Index construction and ANALYZE
 were outside the timings.
+
+Those initial measurements are separate from my student-run comparison.
+The automation used to collect them is not included in this repository.
+Cache state and system load affect timings; these measurements do not
+predict production performance.
+
+OTHER QUERIES
+Queries.sql covers customer history, paid order value by category,
+customers without orders, monthly sales in Africa/Lagos and payment
+reconciliation.
+
+My student-run reconciliation query returned zero mismatches.
+Reported sales are gross line values, not net profit or
+refund-adjusted revenue.
+
+The synthetic customer mapping is deterministic. Its distribution
+does not represent actual customer demand.
