@@ -1,0 +1,27 @@
+SET
+BEGIN
+ product_id | stock 
+------------+-------
+          1 |    98
+(1 row)
+
+UPDATE 1
+COMMIT
+ after_commit 
+--------------
+           98
+(1 row)
+
+BEGIN
+ stock 
+-------
+    93
+(1 row)
+
+UPDATE 1
+ROLLBACK
+ after_rollback 
+----------------
+             98
+(1 row)
+

@@ -1,0 +1,6 @@
+ product_id | stock 
+------------+-------
+          2 |   101
+(1 row)
+
+UPDATE 1

@@ -1,0 +1,51 @@
+test> 
+test> true
+test> { ok: 1 }
+test> sku_1
+test> | | | | {
+  acknowledged: true,
+  insertedIds: { '0': Int32(1), '1': Int32(2), '2': Int32(3) }
+}
+test> Battery search:
+[
+  {
+    _id: 1,
+    sku: 'SKU-1',
+    name: 'Wireless headphones',
+    attributes: {
+      brand: 'DemoSound',
+      batteryHours: 30,
+      colour: 'black'
+    }
+  }
+]
+
+test> {
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+test> Updated product:
+{
+  _id: 1,
+  sku: 'SKU-1',
+  name: 'Wireless headphones',
+  attributes: {
+    brand: 'DemoSound',
+    batteryHours: 30,
+    colour: 'black',
+    noiseCancellation: true
+  }
+}
+
+test> PASS duplicate SKU rejected, code 11000
+
+test> PASS invalid attributes rejected, code 121
+
+test> Count: 3
+
+test> MongoDB version: 8.3.17
+
+test> 

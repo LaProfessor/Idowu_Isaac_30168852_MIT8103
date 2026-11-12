@@ -1,0 +1,9 @@
+   entity    | count  
+-------------+--------
+ products    |   1000
+ customers   |  10000
+ payments    | 180000
+ orders      | 200000
+ order_items | 200000
+(5 rows)
+
