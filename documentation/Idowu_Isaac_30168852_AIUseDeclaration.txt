@@ -1,4 +1,4 @@
-I selected IsaacMart case study, then I used OpenAI ChatGPT/Codex to help draft schemas, SQL scripts, MongoDB examples, diagrams, explanations and documentation, and guide my testing. The assistant also performed initial automated checks in its own environment.
+I adopted the simulated IsaacMart case study suggested by ChatGPT/Codex, then I used OpenAI ChatGPT/Codex to help draft schemas, SQL scripts, MongoDB examples, diagrams, explanations and documentation, and guide my testing. The assistant also performed initial automated checks in its own environment.
 
 I subsequently ran the database setup, SQL queries, index comparison, commit/rollback, two-session locking, repeatable-read isolation, MongoDB catalogue and integrity checks myself in GitHub Codespaces. I shared the outputs for review, saved student-run evidence files and pushed them to GitHub in commit `bf95174`.
 
