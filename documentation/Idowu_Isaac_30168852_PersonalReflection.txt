@@ -1,4 +1,4 @@
-Complete in your own words after reviewing and rerunning the portfolio.
+After reviewing and rerunning the portfolio.
 1. Design decision
 
 I understood why unit_price is stored in OrderItems. It records the price charged when an order was placed. If the current product price changes later, previous orders must retain their original prices.
