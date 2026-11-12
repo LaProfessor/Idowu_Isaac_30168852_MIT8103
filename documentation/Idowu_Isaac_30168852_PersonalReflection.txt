@@ -19,7 +19,7 @@ Saving evidence from the container was challenging. A relative output path faile
 
 5. Verification record
 
-Testing date: 12 November 2026, if that matches when you performed these tests.
+Testing date: 12 November 2026
 
 I ran the schema and seed scripts, checked record counts, compared execution plans before and after indexing, ran the queries and transaction script, demonstrated locking and repeatable-read isolation, executed the MongoDB catalogue script, and ran the integrity checks.
 
