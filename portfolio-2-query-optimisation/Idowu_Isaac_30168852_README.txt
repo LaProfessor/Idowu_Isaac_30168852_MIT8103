@@ -1,0 +1,6 @@
+Customer-history optimisation
+The query filters orders by customer_id and requests the newest ten. Before the index PostgreSQL must scan the table (potentially with parallel workers) and sort qualifying rows. The composite B-tree index on (customer_id,ordered_at DESC) permits an ordered index scan and early stop. Check BeforePlan.json and AfterPlan.json for the planner's actual choice and buffer counts.
+
+The harness runs one warm-up then five measurements for each condition using EXPLAIN ANALYZE. Measurements.json contains server execution times in milliseconds, excluding process startup. Index construction and ANALYZE are outside timings. Conditions are sequential on one local container; caching and parallelism affect results. These are demonstrations, not production capacity predictions. No planner scan method is forced. The index consumes space and adds write maintenance.
+
+Queries.sql also covers paid revenue by category, anti-join customers without orders, monthly sales in Africa/Lagos and payment reconciliation. Revenue here is gross line value, not net profit or refund-adjusted revenue. QueryResults.txt records actual outputs. The customer mapping is deliberately deterministic; do not infer business demand from this synthetic distribution.

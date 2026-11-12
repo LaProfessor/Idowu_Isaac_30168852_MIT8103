@@ -1,0 +1,1 @@
+Median server execution time over five measured runs: before 12.802 ms; after 0.093 ms. Observed ratio 137.66x. One warm-up per condition. Refer to README.txt for method and limitations.

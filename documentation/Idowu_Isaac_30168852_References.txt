@@ -1,0 +1,12 @@
+References
+Miva University. MIT 8103 Advanced Database Systems, CA September Cohort 2026, supplied assessment brief.
+PostgreSQL 17 documentation: https://www.postgresql.org/docs/17/ddl-constraints.html
+https://www.postgresql.org/docs/17/using-explain.html
+https://www.postgresql.org/docs/17/indexes-multicolumn.html
+https://www.postgresql.org/docs/17/transaction-iso.html
+https://www.postgresql.org/docs/17/explicit-locking.html
+https://www.postgresql.org/docs/17/warm-standby.html
+MongoDB documentation: https://www.mongodb.com/docs/manual/data-modeling/
+https://www.mongodb.com/docs/manual/core/schema-validation/
+https://www.mongodb.com/docs/manual/replication/
+Documentation links supplied for verification and further reading. Synthetic dataset generated specifically for this exercise; no external customer dataset.

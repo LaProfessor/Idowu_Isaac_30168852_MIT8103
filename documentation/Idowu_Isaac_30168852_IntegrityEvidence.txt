@@ -1,0 +1,5 @@
+DO
+NOTICE:  PASS negative stock rejected
+NOTICE:  PASS missing customer rejected
+NOTICE:  PASS duplicate email rejected
+NOTICE:  PASS counts and transaction final state

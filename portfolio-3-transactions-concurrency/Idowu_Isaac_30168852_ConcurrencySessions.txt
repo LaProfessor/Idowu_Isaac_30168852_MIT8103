@@ -1,0 +1,3 @@
+Session A: BEGIN; UPDATE isaacmart.products SET stock=stock-1 WHERE product_id=1;
+Session B: BEGIN; SET LOCAL lock_timeout='500ms'; UPDATE isaacmart.products SET stock=stock-1 WHERE product_id=1;
+Expected: session B gets SQLSTATE 55P03, canceling statement due to lock timeout. Run ROLLBACK in B to recover its aborted transaction; ROLLBACK in A to restore stock. Without lock_timeout B waits; after A commits, a conditional stock>=quantity UPDATE rechecks the latest row. Never rely on a separate unlocked SELECT before decrementing.

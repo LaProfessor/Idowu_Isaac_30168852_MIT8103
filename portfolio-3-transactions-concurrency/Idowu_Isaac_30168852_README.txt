@@ -1,0 +1,8 @@
+Transactions and concurrency
+Transactions.sql commits a two-unit decrement then rolls back a five-unit decrement: stock moves 100 -> 98 -> 98. Checkout.sql groups a guarded stock decrement, order, line and pending payment into one transaction, then rolls back for demonstration. Production code must check exactly one updated row and use an idempotency key; external gateway settlement needs an outbox/saga and reconciliation.
+
+ConcurrencyEvidence.txt uses two actual sessions. A holds the product row lock while B tries to update it. B fails on a 500ms lock timeout. A rolls back, leaving stock 98. In an interactive session B must explicitly ROLLBACK after the error; the automated client closes its session. Without the timeout B waits. A conditional UPDATE with stock>=requested quantity avoids a stale SELECT-then-write oversell at READ COMMITTED because PostgreSQL rechecks the predicate after waiting.
+
+IsolationEvidence.txt demonstrates REPEATABLE READ: A reads 100, B commits 101, A still reads 100 within its transaction and reads 101 after commit. READ COMMITTED instead takes a new snapshot for each statement. Repeatable read may require retries for concurrent modifications; it does not eliminate all write-skew anomalies. SERIALIZABLE offers stronger anomaly detection with retry requirements. Multiple stock rows should be locked in a consistent product-id order to reduce deadlocks.
+
+ACID: atomic transactions group related writes; constraints and application invariants support consistency; MVCC and locks provide the chosen isolation; PostgreSQL WAL supports durability under normal commit settings. This exercise does not simulate disk failure or payment provider failure.

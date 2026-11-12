@@ -1,0 +1,6 @@
+Complete in your own words after reviewing and rerunning the portfolio.
+1. Which design decision did you understand and why? Explain historical unit_price.
+2. Which query plan changed after indexing, and what did you observe on your own machine?
+3. What concurrency result did you reproduce, and how does the guarded update prevent overselling?
+4. What challenge did YOU encounter, how did you solve it, and what would you improve?
+5. Record your actual testing date, commands, changes and outputs. Do not describe assistant-run work as personal experience.

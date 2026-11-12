@@ -1,0 +1,22 @@
+SESSION A
+SET
+BEGIN
+UPDATE 1
+ pg_sleep 
+----------
+ 
+(1 row)
+
+ROLLBACK
+
+SESSION B
+BEGIN
+SET
+ERROR:  canceling statement due to lock timeout
+CONTEXT:  while updating tuple (8,41) in relation "products"
+
+ stock 
+-------
+    98
+(1 row)
+

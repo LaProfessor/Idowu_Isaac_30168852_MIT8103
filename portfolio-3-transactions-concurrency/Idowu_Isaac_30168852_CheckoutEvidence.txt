@@ -1,0 +1,17 @@
+SET
+BEGIN
+ stock 
+-------
+    97
+(1 row)
+
+UPDATE 1
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+ order_id | product_id | quantity | unit_price 
+----------+------------+----------+------------
+   200001 |          1 |        1 |    1050.00
+(1 row)
+
+ROLLBACK

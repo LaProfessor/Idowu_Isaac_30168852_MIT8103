@@ -1,0 +1,16 @@
+SESSION B commits during session A sleep:
+ stock 
+-------
+   101
+(1 row)
+
+UPDATE 1
+
+SESSION A (100,100 within snapshot;101 after commit):
+SET
+BEGIN
+100
+
+100
+COMMIT
+101

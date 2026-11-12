@@ -1,0 +1,31 @@
+DROP SCHEMA
+CREATE SCHEMA
+SET
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+SET
+INSERT 0 10000
+INSERT 0 3
+INSERT 0 1000
+INSERT 0 200000
+INSERT 0 200000
+INSERT 0 180000
+ANALYZE
+   entity    | count  
+-------------+--------
+ customers   |  10000
+ payments    | 180000
+ order_items | 200000
+ orders      | 200000
+(4 rows)
+
+                                                       version                                                        
+----------------------------------------------------------------------------------------------------------------------
+ PostgreSQL 17.11 (Debian 17.11-1.pgdg13+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 14.2.0-19) 14.2.0, 64-bit
+(1 row)
+
+NOTICE:  schema "isaacmart" does not exist, skipping
