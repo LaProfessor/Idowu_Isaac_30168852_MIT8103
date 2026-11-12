@@ -1,6 +1,5 @@
-Complete in your own words after reviewing and rerunning the portfolio.
-1. Which design decision did you understand and why? Explain historical unit_price.
-2. Which query plan changed after indexing, and what did you observe on your own machine?
-3. What concurrency result did you reproduce, and how does the guarded update prevent overselling?
-4. What challenge did YOU encounter, how did you solve it, and what would you improve?
-5. Record your actual testing date, commands, changes and outputs. Do not describe assistant-run work as personal experience.
+I learned that an index can substantially reduce the work needed for a selective query. In my customer-history test, execution time fell from 13.326 ms with a parallel sequential scan and sort to 0.131 ms with an index scan, approximately a 102-fold improvement in this single comparison. The composite B-tree helped PostgreSQL locate one customer’s orders in date order and stop after ten rows. These timings are specific to my test; indexes also require storage and write maintenance.
+
+The two-session exercise showed that an uncommitted update can block another update to the same row. The second session reached its two-second lock timeout while the first held the lock. Rolling back the first transaction restored product 1 stock to 98. In the repeatable-read test, one transaction continued to see stock 100 after another session committed 101; a new query after commit saw 101.
+
+Saving evidence from the container was the most tedious part. A relative output path failed inside psql because the repository folders were outside the database container. With guidance, I exited psql and saved command output from the Codespace shell using tee. I also had to keep the first transaction open while using a second terminal. These steps helped me distinguish database transactions from the surrounding container and terminal workflow. I would improve the exercise by repeating the performance measurements and comparing additional query filters.
