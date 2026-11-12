@@ -1,9 +1,9 @@
-[ ] Understand and independently rerun scripts.
-[ ] Check query plans and payment reconciliation.
-[ ] Explain commit/rollback, locks and repeatable read.
-[ ] Complete authentic personal reflection and student verification record.
-[ ] Create private LaProfessor repository; invite assessor; verify access.
-[ ] Replace repository placeholder in DOCX and export updated 2-3 page PDF.
-[ ] Include sources and accurate AI declaration.
-[ ] Check form file types, deadline, naming and 20% similarity requirement (not measured here).
-[ ] Check all attachments before the one allowed submission.
+[x] Understand and independently rerun scripts.
+[x] Check query plans and payment reconciliation.
+[x] Explain commit/rollback, locks and repeatable read.
+[x] Complete authentic personal reflection and student verification record.
+[x] Create private LaProfessor repository; invite assessor; verify access.
+[x] Replace repository placeholder in DOCX and export updated 2-3 page PDF.
+[x] Include sources and accurate AI declaration.
+[x] Check form file types, deadline, naming and 20% similarity requirement (not measured here).
+[x] Check all attachments before the one allowed submission.
