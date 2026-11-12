@@ -1,6 +1,42 @@
-Customer-history optimisation
-The query filters orders by customer_id and requests the newest ten. Before the index PostgreSQL must scan the table (potentially with parallel workers) and sort qualifying rows. The composite B-tree index on (customer_id,ordered_at DESC) permits an ordered index scan and early stop. Check BeforePlan.json and AfterPlan.json for the planner's actual choice and buffer counts.
+CUSTOMER-HISTORY QUERY OPTIMISATION
 
-The harness runs one warm-up then five measurements for each condition using EXPLAIN ANALYZE. Measurements.json contains server execution times in milliseconds, excluding process startup. Index construction and ANALYZE are outside timings. Conditions are sequential on one local container; caching and parallelism affect results. These are demonstrations, not production capacity predictions. No planner scan method is forced. The index consumes space and adds write maintenance.
+The query filters orders by customer_id and returns the newest ten.
+Before indexing, PostgreSQL used a parallel sequential scan followed
+by sorting. The composite B-tree index on
+(customer_id, ordered_at DESC) allowed an ordered index scan and
+early stopping after ten rows.
 
-Queries.sql also covers paid revenue by category, anti-join customers without orders, monthly sales in Africa/Lagos and payment reconciliation. Revenue here is gross line value, not net profit or refund-adjusted revenue. QueryResults.txt records actual outputs. The customer mapping is deliberately deterministic; do not infer business demand from this synthetic distribution.
+STUDENT-RUN VERIFICATION
+
+I executed the same EXPLAIN (ANALYZE, BUFFERS) query before and
+after creating orders_customer_date_idx and refreshing statistics
+with ANALYZE.
+
+Before indexing:
+- Parallel sequential scan followed by sorting.
+- Execution time: 13.326 ms.
+- Top-level execution buffers: 1,311 shared hits.
+
+After indexing:
+- Index scan using orders_customer_date_idx.
+- Execution time: 0.131 ms.
+- Top-level execution buffers: 10 shared hits and 3 shared reads.
+
+This was approximately a 102-fold improvement in one comparison.
+These are single-run measurements, not averages or production
+performance predictions. Cache state and system load affect timings.
+Indexes also require storage and maintenance during writes.
+
+Student evidence:
+Idowu_Isaac_30168852_StudentBeforeIndex.txt
+Idowu_Isaac_30168852_StudentAfterIndex.txt
+Idowu_Isaac_30168852_StudentQueryResults.txt
+
+INITIAL ASSISTANT-RUN MEASUREMENTS
+
+BeforePlan.json, AfterPlan.json and Measurements.json contain the
+initial assistant-run evidence. That measurement procedure used one
+warm-up followed by five measured executions for each condition.
+Measurements.json records server execution times in milliseconds,
+excluding client process startup. Index construction and ANALYZE
+were outside the timings.
