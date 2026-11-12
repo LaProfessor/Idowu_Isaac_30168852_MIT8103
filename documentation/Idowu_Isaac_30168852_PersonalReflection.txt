@@ -1,5 +1,26 @@
-I learned that an index can substantially reduce the work needed for a selective query. In my customer-history test, execution time fell from 13.326 ms with a parallel sequential scan and sort to 0.131 ms with an index scan, approximately a 102-fold improvement in this single comparison. The composite B-tree helped PostgreSQL locate one customer’s orders in date order and stop after ten rows. These timings are specific to my test; indexes also require storage and write maintenance.
+Complete in your own words after reviewing and rerunning the portfolio.
+1. Design decision
 
-The two-session exercise showed that an uncommitted update can block another update to the same row. The second session reached its two-second lock timeout while the first held the lock. Rolling back the first transaction restored product 1 stock to 98. In the repeatable-read test, one transaction continued to see stock 100 after another session committed 101; a new query after commit saw 101.
+I understood why unit_price is stored in OrderItems. It records the price charged when an order was placed. If the current product price changes later, previous orders must retain their original prices.
 
-Saving evidence from the container was the most tedious part. A relative output path failed inside psql because the repository folders were outside the database container. With guidance, I exited psql and saved command output from the Codespace shell using tee. I also had to keep the first transaction open while using a second terminal. These steps helped me distinguish database transactions from the surrounding container and terminal workflow. I would improve the exercise by repeating the performance measurements and comparing additional query filters.
+2. Query optimisation
+
+In my Codespace, the customer-history query changed from a parallel sequential scan followed by sorting to an index scan using orders_customer_date_idx. Execution time fell from 13.326 ms to 0.131 ms, approximately 102 times faster in this single comparison. These timings are specific to this test.
+
+3. Transactions and concurrency
+
+I reproduced a two-session locking test. The first transaction held a product-row lock, and the second session reached its two-second lock timeout. Rolling back the first transaction restored stock to 98.
+
+A guarded update using WHERE stock >= requested_quantity prevents a decrement when insufficient stock remains, provided the application checks that one row was updated. My locking test demonstrated contention; it did not directly test two competing guarded purchases.
+
+4. Challenge and improvement
+
+Saving evidence from the container was challenging. A relative output path failed inside psql because the repository folders were outside the database container. With guidance, I saved output from the Codespace shell using tee. I also learned to keep one transaction open while working in a second terminal. I would improve the exercise by repeating performance measurements and testing more query conditions.
+
+5. Verification record
+
+Testing date: 12 November 2026, if that matches when you performed these tests.
+
+I ran the schema and seed scripts, checked record counts, compared execution plans before and after indexing, ran the queries and transaction script, demonstrated locking and repeatable-read isolation, executed the MongoDB catalogue script, and ran the integrity checks.
+
+My outputs showed zero payment mismatches, stock restored after rollback, the expected lock timeout, repeatable-read values of 100 → 100 → 101, three MongoDB documents and successful constraint checks. I saved the outputs in Student… evidence files and pushed them in commit bf95174. The full first-session isolation sequence was shared in chat; its saved final-state file records the final value only.
